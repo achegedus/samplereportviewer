@@ -18,6 +18,16 @@ use Illuminate\Http\Request;
 //})->middleware('auth:api');
 
 
+// Admin routes
 Route::group(['prefix' => 'v1', 'middleware' => 'auth0.jwt'], function () {
     Route::get('test', 'TestController@index');
+
+    Route::post('report', 'ReportsController@store');
+    Route::put('report/{id}', 'ReportsController@update');
+    Route::delete('report/{id}', 'ReportsController@destroy');
+});
+
+// Public routes
+Route::group(['prefix' => 'v1', 'middleware' => 'api'], function() {
+    Route::get('reports', 'ReportsController@index');
 });
