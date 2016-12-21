@@ -3,9 +3,7 @@
     <div>
         <admin-nav></admin-nav>
 
-        <router-view>
-
-        </router-view>
+        <router-view></router-view>
     </div>
 
 </template>
