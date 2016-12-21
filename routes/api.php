@@ -30,4 +30,5 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth0.jwt'], function () {
 // Public routes
 Route::group(['prefix' => 'v1', 'middleware' => 'api'], function() {
     Route::get('reports', 'ReportsController@index');
+    Route::get('report/{id}', 'ReportsController@show');
 });

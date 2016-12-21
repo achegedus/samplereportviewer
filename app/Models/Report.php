@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     //
+
+    protected $fillable = ['code', 'description', 'display_name', 'group_id'];
 }

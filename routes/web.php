@@ -14,3 +14,7 @@
 Route::get('/', function() {
     return view('home_page');
 });
+
+Route::get('/{catchall?}', function () {
+    return response()->view('home_page');
+})->where('catchall', '(.*)');

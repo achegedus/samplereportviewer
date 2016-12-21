@@ -33,11 +33,15 @@ class ReportsController extends Controller
 
 
     /**
-     * @param Report $report
+     * @param $id
+     * @return mixed
+     * @internal param Report $report
      */
-    public function show(Report $report)
+    public function show($id)
     {
+        $report = Report::findOrFail($id);
 
+        return $this->response->withItem($report, new ReportTransformer());
     }
 
 
@@ -46,25 +50,34 @@ class ReportsController extends Controller
      */
     public function store(Request $request)
     {
-
+        Report::create($request->all());
     }
 
 
     /**
      * @param Request $request
-     * @param Report $report
+     * @param $id
+     * @return mixed
+     * @internal param Report $report
      */
-    public function update(Request $request, Report $report)
+    public function update(Request $request, $id)
     {
+        $report = Report::findOrFail($id);
 
+        $report->update($request->all());
+
+        return $this->response->withItem($report, new ReportTransformer());
     }
 
 
     /**
-     * @param Request $request
+     * @param $id
+     * @internal param Request $request
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
+        $report = Report::findOrFail($id);
 
+        $report->delete();
     }
 }

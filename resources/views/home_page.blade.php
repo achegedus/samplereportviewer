@@ -8,10 +8,20 @@
     <title>EnergyCAP Reports Viewer</title>
 
     <link rel="stylesheet" href="/css/app.css">
+
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
 </head>
 <body class="container">
 
-    <h2>EnergyCAP Report Viewer</h2>
+    <div id="app">
+
+        <app></app>
+
+    </div>
 
     <script src="/js/app.js"></script>
 
