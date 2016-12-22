@@ -10,9 +10,11 @@ require('./bootstrap');
 var VueRouter = require('vue-router');
 var VueResource = require('vue-resource');
 var Auth0 = require('auth0-js');
+var VueMoment = require('vue-moment');
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
+Vue.use(VueMoment)
 
 export var auth0 = new Auth0({
     domain: 'energycap.auth0.com',
@@ -33,6 +35,7 @@ import HomePage from './pages/HomePage.vue'
 import LoginPage from './pages/admin/LoginPage.vue'
 import DashboardPage from './pages/admin/DashboardPage.vue'
 import AdminReportsPage from './pages/admin/ReportsPage.vue'
+import AdminReportEditPage from './pages/admin/ReportsEditPage.vue'
 
 import store from './store'
 
@@ -42,7 +45,8 @@ const routes = [
     {path: '/', component: HomePage, name: 'home'},
     {path: '/admin', component: LoginPage, name: 'login'},
     {path: '/admin/dashboard', component: DashboardPage, name: 'admin-dashboard', meta: {requiresAuth: true }},
-    {path: '/admin/reports', component: AdminReportsPage, name: 'admin-reports', meta: {requiresAuth: true }}
+    {path: '/admin/reports', component: AdminReportsPage, name: 'admin-reports', meta: {requiresAuth: true }},
+    {path: '/admin/reports/:reportId/edit', component: AdminReportEditPage, name: 'admin-report-edit', meta: {requiresAuth: true }}
 ]
 
 

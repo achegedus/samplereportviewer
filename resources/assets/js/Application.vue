@@ -32,7 +32,6 @@
         },
 
         created() {
-            console.log(this)
             const userObj = JSON.parse(window.localStorage.getItem('authUser'))
             this.$store.dispatch('setUserObject', userObj)
         }

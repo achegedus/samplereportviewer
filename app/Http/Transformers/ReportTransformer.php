@@ -19,7 +19,9 @@ class ReportTransformer extends TransformerAbstract
             'id' => $report->id,
             'code' => $report->code,
             'name' => $report->display_name,
-            'description' => $report->description
+            'description' => $report->description,
+            'version' => $report->version,
+            'updated_at' => $report->updated_at->toDateTimeString()
         ];
     }
 

@@ -10,7 +10,6 @@ window._ = require('lodash');
 window.$ = window.jQuery = require('jquery');
 require('bootstrap-sass');
 require('auth0-js');
-
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean
@@ -20,6 +19,7 @@ require('auth0-js');
 window.Vue = require('vue');
 require('vue-resource');
 require('vue-router');
+require('vue-moment');
 
 /**
  * We'll register a HTTP interceptor to attach the "CSRF" header to each of

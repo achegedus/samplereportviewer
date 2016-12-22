@@ -11,10 +11,10 @@
 
         <tbody>
             <tr v-for="report in reports">
-                <td>{{ report.code }}</td>
+                <td><router-link :to="{ name: 'admin-report-edit', params: {reportId: report.id }}">{{ report.code }}</router-link></td>
                 <td>{{ report.name }}</td>
                 <td>{{ report.version }}</td>
-                <td>{{ report.updateDate }}</td>
+                <td>{{ report.updated_at | moment("MM/D/YYYY, h:mm:ss a") }}</td>
             </tr>
         </tbody>
     </table>
@@ -29,7 +29,6 @@
 <script>
     export default{
 
-
         data(){
             return{
                 reports:[]
@@ -40,7 +39,7 @@
             this.$http.get('/api/v1/reports').then((response) => {
                 this.reports = response.body.data
             }, (error) => {
-
+                alert.show("An error occurred.")
             })
         }
     }
