@@ -1,21 +1,22 @@
 <template>
     <div>
-        <h2>{{ this.report.code }}</h2>
+        <h2>{{ report.code }}</h2>
 
-        <form>
-            <div class="form-group" >
+        <form @submit.prevent="validateBeforeSubmit">
+            <div class="form-group">
                 <label for="code">Code</label>
                 <input type="text" class="form-control" id="code" v-model="report.code">
             </div>
 
-            <div class="form-group">
-                <label for="shortDesc">Short Description</label>
-                <input type="text" class="form-control" id="shortDesc" v-model="report.name">
+            <div class="form-group" :class="{'has-error': errors.has('shortDesc') }">
+                <label class="control-label" for="shortDesc">Name</label>
+                <input name="shortDesc" v-model="report.name" v-validate data-vv-rules="required" class="form-control" type="text" placeholder="Short Description">
+                <span v-show="errors.has('shortDesc')">{{ errors.first('shortDesc') }}</span>
             </div>
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" v-model="report.description"></textarea>
+                <textarea class="form-control" id="description" rows="5" v-model="report.description"></textarea>
             </div>
 
             <div class="form-group">
@@ -24,7 +25,7 @@
             </div>
 
             <div class="form-group">
-                <button type="button" class="btn btn-default" v-on:click="handleFormSubmit()">Update Report</button>
+                <button type="submit" class="btn btn-default">Update Report</button>
             </div>
         </form>
     </div>
@@ -66,10 +67,27 @@
                 });
             },
 
+            validateBeforeSubmit(e) {
+                var self = this;
+                this.$validator.validateAll();
+                if (this.errors.any()) {
+                    console.log("not submitted");
+                    return;
+                }
+
+                this.handleFormSubmit();
+                console.log("submitted");
+            },
+
             handleFormSubmit: function() {
-                console.log("submit");
                 // submit data
-                this.$http.put('/api/v1/report/' + this.$route.params.reportId, null, {headers: getHeader()})
+                const postData = {
+                    description: this.report.description,
+                    code: this.report.code,
+                    display_name: this.report.name
+                }
+
+                this.$http.put('/api/v1/report/' + this.$route.params.reportId, postData, {headers: getHeader()})
                     .then((response) => {
                         console.log(response)
                     }, (error) => {

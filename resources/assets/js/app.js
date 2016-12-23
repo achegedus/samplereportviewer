@@ -11,10 +11,12 @@ var VueRouter = require('vue-router');
 var VueResource = require('vue-resource');
 var Auth0 = require('auth0-js');
 var VueMoment = require('vue-moment');
+var VeeValidate = require('vee-validate');
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(VueMoment)
+Vue.use(VeeValidate)
 
 export var auth0 = new Auth0({
     domain: 'energycap.auth0.com',
