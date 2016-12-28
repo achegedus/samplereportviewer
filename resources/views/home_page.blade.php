@@ -7,8 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>EnergyCAP Reports Viewer</title>
 
-    <link rel="stylesheet" href="/css/app.css">
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+    <link rel="stylesheet" href="/css/app.css">
+
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),

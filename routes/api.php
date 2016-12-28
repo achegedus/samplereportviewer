@@ -19,12 +19,16 @@ use Illuminate\Http\Request;
 
 
 // Admin routes
-Route::group(['prefix' => 'v1', 'middleware' => 'auth0.jwt'], function () {
-    Route::get('test', 'TestController@index');
-
+Route::group(['prefix' => 'v1/admin', 'middleware' => 'auth0.jwt'], function () {
+    Route::get('reports', 'ReportsController@index');
+    Route::get('report/{id}', 'ReportsController@show');
     Route::post('report', 'ReportsController@store');
     Route::put('report/{id}', 'ReportsController@update');
     Route::delete('report/{id}', 'ReportsController@destroy');
+
+    Route::get('patterns', 'PatternsController@index');
+    Route::get('groups', 'GroupsController@index');
+    Route::get('topics', 'TopicsController@index');
 });
 
 // Public routes

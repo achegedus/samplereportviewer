@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Report;
 use Illuminate\Http\Request;
+use EllipseSynergie\ApiResponse;
 use EllipseSynergie\ApiResponse\Contracts\Response;
 use App\Http\Transformers\ReportTransformer;
+use League\Fractal\Manager;
 
 
 class ReportsController extends Controller
@@ -24,9 +26,17 @@ class ReportsController extends Controller
     /**
      * @return mixed
      */
-    public function index()
+    public function index(Request $request)
     {
-        $reports = Report::paginate(15);
+        $search = $request->input('search');
+
+        if ($search && $search != "") {
+            $reports = Report::where('code','like', '%'.$search.'%')->
+            orWhere('display_name','like', '%'.$search.'%')->
+            paginate(15);
+        } else {
+            $reports = Report::paginate(15);
+        }
 
         return $this->response->withPaginator($reports, new ReportTransformer());
     }

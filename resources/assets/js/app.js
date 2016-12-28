@@ -13,6 +13,7 @@ var Auth0 = require('auth0-js');
 var VueMoment = require('vue-moment');
 var VeeValidate = require('vee-validate');
 
+
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(VueMoment)
@@ -25,38 +26,39 @@ export var auth0 = new Auth0({
     responseType: 'token',
 });
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-
+// import components
 import Application from './Application.vue'
 import HomePage from './pages/HomePage.vue'
 import LoginPage from './pages/admin/LoginPage.vue'
 import DashboardPage from './pages/admin/DashboardPage.vue'
 import AdminReportsPage from './pages/admin/ReportsPage.vue'
 import AdminReportEditPage from './pages/admin/ReportsEditPage.vue'
+import AdminReportCreatePage from './pages/admin/ReportNewPage.vue'
 
 import store from './store'
 
 Vue.component('app', Application)
 
+
+// Define routes
 const routes = [
     {path: '/', component: HomePage, name: 'home'},
     {path: '/admin', component: LoginPage, name: 'login'},
     {path: '/admin/dashboard', component: DashboardPage, name: 'admin-dashboard', meta: {requiresAuth: true }},
     {path: '/admin/reports', component: AdminReportsPage, name: 'admin-reports', meta: {requiresAuth: true }},
-    {path: '/admin/reports/:reportId/edit', component: AdminReportEditPage, name: 'admin-report-edit', meta: {requiresAuth: true }}
+    {path: '/admin/reports/:reportId/edit', component: AdminReportEditPage, name: 'admin-report-edit', meta: {requiresAuth: true }},
+    {path: '/admin/reports/create', component: AdminReportCreatePage , name: 'admin-report-create', meta: {requiresAuth: true}}
 ]
 
 
+// start the router
 const router = new VueRouter({
     mode: 'history',
     routes
 });
 
+
+// Check authentication on routes
 router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth) {
         const authUser = JSON.parse(window.localStorage.getItem('authUser'))
@@ -70,6 +72,11 @@ router.beforeEach((to, from, next) => {
     next()
 });
 
+
+
+
+
+// Start Application
 new Vue({
     router, store
 }).$mount('#app');

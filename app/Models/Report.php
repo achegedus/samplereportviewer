@@ -7,6 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     //
-
     protected $fillable = ['code', 'description', 'display_name', 'group_id'];
+
+    // Relationships
+    public function group() {
+        return $this->belongsTo('App\Models\Group');
+    }
+
+    public function pattern() {
+        return $this->belongsTo('App\Models\Pattern');
+    }
+
+    public function topic() {
+        return $this->belongsTo('App\Models\Topic');
+    }
 }

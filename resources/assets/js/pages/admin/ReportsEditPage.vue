@@ -1,28 +1,19 @@
 <template>
     <div>
-        <h2>{{ report.code }}</h2>
+
+        <div class="row">
+            <div class="col-xs-6"><h2>{{ report.code }}</h2></div>
+
+            <div class="col-xs-6 text-right">
+                <button type="button" class="btn btn-primary back-button" v-on:click="goBack()">
+                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back
+                </button>
+            </div>
+        </div>
+
 
         <form @submit.prevent="validateBeforeSubmit">
-            <div class="form-group">
-                <label for="code">Code</label>
-                <input type="text" class="form-control" id="code" v-model="report.code">
-            </div>
-
-            <div class="form-group" :class="{'has-error': errors.has('shortDesc') }">
-                <label class="control-label" for="shortDesc">Name</label>
-                <input name="shortDesc" v-model="report.name" v-validate data-vv-rules="required" class="form-control" type="text" placeholder="Short Description">
-                <span v-show="errors.has('shortDesc')">{{ errors.first('shortDesc') }}</span>
-            </div>
-
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description" rows="5" v-model="report.description"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="version">Version</label>
-                <input type="text" class="form-control" id="version" v-model="report.version">
-            </div>
+            <report-form :report="this.report"></report-form>
 
             <div class="form-group">
                 <button type="submit" class="btn btn-default">Update Report</button>
@@ -33,13 +24,16 @@
 
 
 <style>
-
+    .back-button {
+        margin-top: 22px;
+    }
 </style>
 
 
 <script>
+    import { mapState } from 'vuex'
+    import ReportForm from '../../components/admin/ReportForm.vue'
 
-    import {getHeader} from '../../config'
 
     export default{
 
@@ -55,15 +49,23 @@
         },
 
 
+        computed: {
+            ...mapState({
+                userStore: state => state.userStore
+            }),
+        },
+
+
         methods: {
 
             fetchReport: function() {
                 // go get the report data
-                this.$http.get('/api/v1/report/' + this.$route.params.reportId).then((response) => {
+                this.$http.get('/api/v1/admin/report/' + this.$route.params.reportId)
+                .then((response) => {
                     console.log(response)
                     this.report = response.body.data
                 }, (error) => {
-
+                    console.log("An error occurred");
                 });
             },
 
@@ -79,6 +81,10 @@
                 console.log("submitted");
             },
 
+            goBack: function() {
+                this.$router.go(-1);
+            },
+
             handleFormSubmit: function() {
                 // submit data
                 const postData = {
@@ -87,11 +93,11 @@
                     display_name: this.report.name
                 }
 
-                this.$http.put('/api/v1/report/' + this.$route.params.reportId, postData, {headers: getHeader()})
+                this.$http.put('/api/v1/admin/report/' + this.$route.params.reportId, postData)
                     .then((response) => {
                         console.log(response)
                     }, (error) => {
-
+                        console.log("An error occurred");
                     });
             }
 
@@ -99,7 +105,7 @@
 
 
         components: {
-
+            ReportForm
         }
     }
 </script>
