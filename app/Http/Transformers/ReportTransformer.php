@@ -22,11 +22,6 @@ class ReportTransformer extends TransformerAbstract
             'name' => $report->display_name,
             'description' => $report->description,
             'version' => $report->version,
-            'group_id' => $report->group->id,
-            'used_in' => [
-                'quality_assurance' => $report->quality_assurance,
-                'accounting' => $report->accounting
-            ],
 
             'audit' => [
                 'updated_at' => $report->updated_at->toDateTimeString(),

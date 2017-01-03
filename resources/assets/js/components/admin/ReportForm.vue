@@ -30,7 +30,7 @@
             </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" v-if="report.topic_id">
             <label for="topic">Topic</label>
             <select class="form-control" name="topic" id="topic" v-model="report.topic_id">
                 <option v-for="topic in topics" v-bind:value="topic.id">

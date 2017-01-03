@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Transformers\ReportDetailTransformer;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use EllipseSynergie\ApiResponse;
@@ -51,43 +52,8 @@ class ReportsController extends Controller
     {
         $report = Report::findOrFail($id);
 
-        return $this->response->withItem($report, new ReportTransformer());
+        return $this->response->withItem($report, new ReportDetailTransformer());
     }
 
 
-    /**
-     * @param Request $request
-     */
-    public function store(Request $request)
-    {
-        Report::create($request->all());
-    }
-
-
-    /**
-     * @param Request $request
-     * @param $id
-     * @return mixed
-     * @internal param Report $report
-     */
-    public function update(Request $request, $id)
-    {
-        $report = Report::findOrFail($id);
-
-        $report->update($request->all());
-
-        return $this->response->withItem($report, new ReportTransformer());
-    }
-
-
-    /**
-     * @param $id
-     * @internal param Request $request
-     */
-    public function destroy($id)
-    {
-        $report = Report::findOrFail($id);
-
-        $report->delete();
-    }
 }
