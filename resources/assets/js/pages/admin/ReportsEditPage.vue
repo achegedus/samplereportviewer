@@ -13,7 +13,7 @@
 
 
         <form @submit.prevent="validateBeforeSubmit">
-            <report-form :report="this.report"></report-form>
+            <report-form :report="this.report" :groups="this.groups" :topics="this.topics" :patterns="this.patterns"></report-form>
 
             <div class="form-group">
                 <button type="submit" class="btn btn-default">Update Report</button>
@@ -39,12 +39,33 @@
 
         data(){
             return{
-                report: {}
+                report: {},
+                groups:[],
+                topics: [],
+                patterns: []
             }
         },
 
 
         created () {
+            this.$http.get('/api/v1/admin/groups').then((response) => {
+                this.groups = response.body.data
+            }, (error) => {
+                alert.show("An error occurred.")
+            });
+
+            this.$http.get('/api/v1/admin/topics').then((response) => {
+                this.topics = response.body.data
+            }, (error) => {
+                alert.show("An error occurred.")
+            });
+
+            this.$http.get('/api/v1/admin/patterns').then((response) => {
+                this.patterns = response.body.data
+            }, (error) => {
+                alert.show("An error occurred.")
+            });
+
             this.fetchReport()
         },
 

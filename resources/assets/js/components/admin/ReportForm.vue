@@ -28,7 +28,24 @@
                     {{ group.name }}
                 </option>
             </select>
-            <span>Selected: {{ report.group_id }}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="topic">Topic</label>
+            <select class="form-control" name="topic" id="topic" v-model="report.topic_id">
+                <option v-for="topic in topics" v-bind:value="topic.id">
+                    {{ topic.description }}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="pattern">Pattern</label>
+            <select class="form-control" name="pattern" id="pattern" v-model="report.pattern_id">
+                <option v-for="pattern in patterns" v-bind:value="pattern.id">
+                    {{ pattern.description }}
+                </option>
+            </select>
         </div>
 
     </div>
@@ -43,15 +60,8 @@
 <script>
     export default{
 
-        props: ['report'],
+        props: ['report', 'groups', 'topics', 'patterns'],
 
-        data() {
-            return {
-                groups:[],
-                topics: [],
-                patterns: []
-            }
-        },
 
         methods: {
 
@@ -62,23 +72,7 @@
         },
 
         created() {
-            this.$http.get('/api/v1/admin/groups').then((response) => {
-                this.groups = response.body.data
-            }, (error) => {
-                alert.show("An error occurred.")
-            });
 
-            this.$http.get('/api/v1/admin/topics').then((response) => {
-                this.topics = response.body.data
-            }, (error) => {
-                alert.show("An error occurred.")
-            });
-
-            this.$http.get('/api/v1/admin/patterns').then((response) => {
-                this.patterns = response.body.data
-            }, (error) => {
-                alert.show("An error occurred.")
-            })
 
         }
 
