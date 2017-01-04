@@ -13,7 +13,7 @@
 
 
         <form @submit.prevent="validateBeforeSubmit">
-            <report-form :report="this.report" :groups="this.groups" :topics="this.topics" :patterns="this.patterns"></report-form>
+            <report-form :report="this.report" ></report-form>
 
             <div class="form-group">
                 <button type="submit" class="btn btn-default">Update Report</button>
@@ -47,25 +47,7 @@
         },
 
 
-        created () {
-            this.$http.get('/api/v1/admin/groups').then((response) => {
-                this.groups = response.body.data
-            }, (error) => {
-                alert.show("An error occurred.")
-            });
-
-            this.$http.get('/api/v1/admin/topics').then((response) => {
-                this.topics = response.body.data
-            }, (error) => {
-                alert.show("An error occurred.")
-            });
-
-            this.$http.get('/api/v1/admin/patterns').then((response) => {
-                this.patterns = response.body.data
-            }, (error) => {
-                alert.show("An error occurred.")
-            });
-
+        mounted () {
             this.fetchReport()
         },
 
@@ -81,12 +63,20 @@
 
             fetchReport: function() {
                 // go get the report data
-                this.$http.get('/api/v1/admin/report/' + this.$route.params.reportId)
+                this.axios.get('/api/v1/admin/report/' + this.$route.params.reportId)
                 .then((response) => {
                     console.log(response)
-                    this.report = response.body.data
-                }, (error) => {
-                    console.log("An error occurred");
+                    this.report = response.data.data
+
+                    this.report.actual_data = this.report.filters.actual
+                    this.report.cal_data = this.report.filters.calendarized
+                    this.report.norm_data = this.report.filters.normalized
+                    this.report.quality_assurance = this.report.filters.quality_assurance
+                    this.report.accounting = this.report.filters.accounting
+                    this.report.facility_management = this.report.filters.facility_management
+                    this.report.cost_avoidance = this.report.filters.cost_avoidance
+                    this.report.compare_years = this.report.filters.compare_years
+                    this.report.line_detail = this.report.filters.line_detail
                 });
             },
 

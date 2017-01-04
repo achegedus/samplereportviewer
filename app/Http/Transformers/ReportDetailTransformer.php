@@ -26,10 +26,16 @@ class ReportDetailTransformer extends TransformerAbstract
             'group_id' => $report->group_id,
             'pattern_id' => $report->pattern_id,
 
-            'data_types' => [
+            'filters' => [
                 'actual' => $report->actual_bill,
                 'calendarized' => $report->calendarized_bill,
-                'normalized' => $report->normalized_bill
+                'normalized' => $report->normalized_bill,
+                'quality_assurance' => $report->quality_assurance,
+                'accounting' => $report->accounting,
+                'facility_management' => $report->facility_management,
+                'cost_avoidance' => $report->cost_avoidance,
+                'compare_years' => $report->compare_years,
+                'line_detail' => $report->line_detail
             ],
 
             'rating' => $report->rating,

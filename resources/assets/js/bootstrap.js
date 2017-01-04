@@ -29,6 +29,8 @@ require('vue-moment');
 
 import auth from './auth';
 
+
+
 Vue.http.interceptors.push((request, next) => {
     request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
 

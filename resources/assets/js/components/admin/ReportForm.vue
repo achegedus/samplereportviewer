@@ -48,6 +48,95 @@
             </select>
         </div>
 
+        <label>Filters</label>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3 class="panel-title">Data Types</h3></div>
+                    <div class="panel-body">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" v-model="actual_check" v-on:change="setActual">
+                                Actual Data
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" v-model="cal_check">
+                                Calendarized Data
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" v-model="norm_check">
+                                Normalized Data
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3 class="panel-title">Primary Uses</h3></div>
+                    <div class="panel-body">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" v-model="report.quality_assurance">
+                                QA and Validation of Data
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" v-model="report.accounting">
+                                Accounting, Procurement, Bill processing
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" v-model="report.facility_management">
+                                Facility, Energy and Sustainability management
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3 class="panel-title">Data Shown</h3></div>
+                    <div class="panel-body">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" v-model="report.line_detail">
+                                Shows individual bill line item details
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" v-model="report.compare_years">
+                                Shows year to year cost and/or usage comparison.
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" v-model="report.cost_avoidance">
+                                Year to year comparisons based on Cost Avoidance. Requires licensing and use of the Cost Avoidance Module.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -58,23 +147,59 @@
 
 
 <script>
-    export default{
+    export default {
 
-        props: ['report', 'groups', 'topics', 'patterns'],
+        props: ['report'],
 
+        data() {
+            return {
+                groups: [],
+                topics: [],
+                patterns: []
+            }
+        },
+
+        computed: {
+            actual_check: function() {
+                return this.report.actual_data;
+            },
+
+            norm_check: function() {
+                return this.report.norm_data;
+            },
+
+            cal_check: function() {
+                return this.report.cal_data;
+            }
+        },
 
         methods: {
 
+            setActual: function() {
+                console.log('ACT' + this.report.actual_data);
+                if (this.report.actual_data == true) {
+                    this.report.cal_data = false;
+                    console.log('CAL' + this.report.cal_data);
+                    this.report.norm_data = false;
+                }
+            }
+
+
         },
 
-        components: {
+        mounted() {
+            this.axios.get('/api/v1/admin/groups').then((response) => {
+                this.groups = response.data.data
+            });
 
-        },
+            this.axios.get('/api/v1/admin/topics').then((response) => {
+                this.topics = response.data.data
+            });
 
-        created() {
-
+            this.axios.get('/api/v1/admin/patterns').then((response) => {
+                this.patterns = response.data.data
+            });
 
         }
-
     }
 </script>

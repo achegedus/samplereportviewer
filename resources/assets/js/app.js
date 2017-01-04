@@ -12,12 +12,15 @@ var VueResource = require('vue-resource');
 var Auth0 = require('auth0-js');
 var VueMoment = require('vue-moment');
 var VeeValidate = require('vee-validate');
+var axios = require('axios');
+var VueAxios = require('vue-axios');
 
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(VueMoment)
 Vue.use(VeeValidate)
+Vue.use(VueAxios, axios)
 
 export var auth0 = new Auth0({
     domain: 'energycap.auth0.com',
@@ -57,6 +60,9 @@ const router = new VueRouter({
     routes
 });
 
+
+const tokenData = JSON.parse(window.localStorage.getItem('authUser'));
+Vue.axios.defaults.headers.common['Authorization'] = 'Bearer ' + tokenData.id_token;
 
 // Check authentication on routes
 router.beforeEach((to, from, next) => {
