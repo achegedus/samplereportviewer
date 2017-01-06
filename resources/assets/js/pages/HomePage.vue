@@ -7,8 +7,30 @@
 
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" v-model="filters.cost_avoidance" v-on:click="filterResults">
+                        <input type="checkbox" v-model="filters.cost_avoidance" v-on:change="filterResults">
                         Cost Avoidance
+                    </label>
+                </div>
+
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" v-model="filters.actual_bill" v-on:change="filterResults">
+                        Actual Bill Data
+                    </label>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" v-model="filters.cal_bill" v-on:change="filterResults">
+                        Calendarized Bill Data
+                    </label>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" v-model="filters.norm_bill" v-on:change="filterResults">
+                        Normalized Bill Data
                     </label>
                 </div>
 
@@ -128,8 +150,20 @@
             filterResults: function() {
                 var querystring = "";
 
-                if (filters.cost_avoidance) {
+                if (this.filters.cost_avoidance == true) {
                     querystring = querystring + "cost_avoidance=1&";
+                }
+
+                if (this.filters.actual_bill == true) {
+                    querystring = querystring + "actual_bill=1&";
+                }
+
+                if (this.filters.cal_bill == true) {
+                    querystring = querystring + "calendarized_bill=1&";
+                }
+
+                if (this.filters.norm_bill == true) {
+                    querystring = querystring + "normalized_bill=1&";
                 }
 
                 this.getReportCounts(querystring);

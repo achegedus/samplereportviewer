@@ -29,17 +29,19 @@ class ReportsController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
+        $inputs = $request->all();
 
-        if ($search && $search != "") {
-            $reports = Report::where('code','like', '%'.$search.'%')->
-            orWhere('display_name','like', '%'.$search.'%')->
-            paginate(15);
-        } else {
-            $reports = Report::paginate(15);
+        $report_filters = Report::select();
+
+        foreach ($inputs as $key => $value) {
+            $report_filters = $report_filters->where($key, $value);
         }
 
-        return $this->response->withPaginator($reports, new ReportTransformer());
+        $reports = $report_filters->get();
+
+
+        return $this->response->withCollection($reports, new ReportTransformer());
+
     }
 
 
