@@ -15,6 +15,10 @@ Route::get('/', function() {
     return view('home_page');
 });
 
-Route::get('/{catchall?}', function () {
+Route::get('/app/{catchall?}', function () {
+    return response()->view('home_page');
+})->where('catchall', '(.*)');
+
+Route::get('/admin/{catchall?}', function () {
     return response()->view('home_page');
 })->where('catchall', '(.*)');
