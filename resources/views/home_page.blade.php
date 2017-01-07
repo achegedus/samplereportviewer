@@ -32,7 +32,7 @@
         ]); ?>
     </script>
 </head>
-<body class="container">
+<body>
 
     <div id="app">
 

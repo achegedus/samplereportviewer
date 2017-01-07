@@ -1,31 +1,27 @@
 <template>
-    <nav class="navbar navbar-default" v-if="userStore.authUser !== null && userStore.authUser.access_token">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">EnergyCAP Report Viewer</a>
+    <div class="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <ul class="list-inline pull-left">
+                        <li class="hidden-xs"><a href="http://www.energycap.com">EnergyCAP Inc.</a></li>
+                    </ul>
+
+                    <ul class="list-inline pull-right">
+                        <li class="hidden-xs"><a href="">{{ username }}</a></li>
+
+                        <li>
+                            <button type="button" class="btn dropdown-toggle" v-on:click.prevent="handleLogout()">Logout</button>
+                        </li>
+
+                    </ul>
+
+                </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <router-link tag="li" :to="{name:'admin-dashboard'}" active-class="active"><a>Dashboard</a></router-link>
-                    <router-link tag="li" :to="{name:'admin-reports'}" active-class="active"><a>Reports</a></router-link>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><p class="navbar-text">{{ username }}</p></li>
-                    <li><button type="button" class="btn btn-default navbar-btn" v-on:click.prevent="handleLogout()">Logout</button></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
 </template>
 
 

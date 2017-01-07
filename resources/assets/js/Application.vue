@@ -3,7 +3,16 @@
     <div>
         <admin-nav></admin-nav>
 
-        <router-view></router-view>
+        <middle-header></middle-header>
+
+        <nav-bar></nav-bar>
+
+        <div class="container m-t-3">
+            <router-view></router-view>
+        </div>
+
+        <footer-bar></footer-bar>
+
     </div>
 
 </template>
@@ -19,10 +28,13 @@
 <script>
     import { mapState } from 'vuex'
     import AdminNav from './components/admin/NavMenu.vue'
+    import MiddleHeader from './components/MiddleHeader.vue'
+    import NavBar from './components/NavBar.vue'
+    import FooterBar from './components/Footer.vue'
 
     export default {
         components: {
-            AdminNav
+            AdminNav, MiddleHeader, NavBar, FooterBar
         },
 
         computed: {

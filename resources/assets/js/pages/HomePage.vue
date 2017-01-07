@@ -1,116 +1,143 @@
 <template>
-    <div>
-        <h1>Sample Reports Viewer</h1>
-
-        <div class="row">
-            <div id="filters" class="col-md-3">
-
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="filter-sidebar">
+                <div class="title"><span>Bill Types</span></div>
                 <div class="checkbox">
-                    <label>
-                        <input type="checkbox" v-model="filters.cost_avoidance" v-on:change="filterResults">
-                        Cost Avoidance
-                    </label>
-                </div>
-
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" v-model="filters.actual_bill" v-on:change="filterResults">
-                        Actual Bill Data
-                    </label>
+                    <label><input type="checkbox" v-model="filters.actual_bill" v-on:change="filterResults">Actual Bill Data</label>
                 </div>
 
                 <div class="checkbox">
-                    <label>
-                        <input type="checkbox" v-model="filters.cal_bill" v-on:change="filterResults">
-                        Calendarized Bill Data
-                    </label>
+                    <label><input type="checkbox" v-model="filters.cal_bill" v-on:change="filterResults">Calendarized Bill Data</label>
                 </div>
 
                 <div class="checkbox">
-                    <label>
-                        <input type="checkbox" v-model="filters.norm_bill" v-on:change="filterResults">
-                        Normalized Bill Data
-                    </label>
+                    <label><input type="checkbox" v-model="filters.norm_bill" v-on:change="filterResults">Normalized Bill Data</label>
                 </div>
-
             </div>
 
+            <div class="filter-sidebar">
+                <div class="title"><span>Other</span></div>
+                <div class="checkbox"><label><input type="checkbox" v-model="filters.cost_avoidance" v-on:change="filterResults">Cost Avoidance</label></div>
+            </div>
+        </div>
 
-            <div id="patterns" class="col-md-9">
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">One page per Building</div>
-                        <div class="panel-body">
-                            {{ this.counts.ONE_BLD }} Reports
-                        </div>
+        <div id="patterns" class="col-sm-9">
+            <div class="title"><span>Report Categories</span></div>
+
+            <div class="col-sm-4 col-md-3 box-product-outer">
+                <div class="box-product">
+                    <div class="img-wrapper">
+                        <a href="detail.html">
+                            <img alt="Product" src="images/demo/p1-1.jpg">
+                        </a>
+                    </div>
+                    <h6><a href="detail.html">One page per Building</a></h6>
+                    <div class="price">
+                        <div>{{ this.counts.ONE_BLD }} Reports</div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">One page per Meter/Account</div>
-                        <div class="panel-body">
-                            {{ this.counts.ONE_MA }} Reports
-                        </div>
+            <div class="col-sm-4 col-md-3 box-product-outer">
+                <div class="box-product">
+                    <div class="img-wrapper">
+                        <a href="detail.html">
+                            <img alt="Product" src="images/demo/p1-1.jpg">
+                        </a>
+                    </div>
+                    <h6><a href="detail.html">One page per Meter/Account</a></h6>
+                    <div class="price">
+                        <div>{{ this.counts.ONE_MA }} Reports</div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">One page per Utility Bill</div>
-                        <div class="panel-body">
-                            {{ this.counts.ONE_BIL }} Reports
-                        </div>
+            <div class="col-sm-4 col-md-3 box-product-outer">
+                <div class="box-product">
+                    <div class="img-wrapper">
+                        <a href="detail.html">
+                            <img alt="Product" src="images/demo/p1-1.jpg">
+                        </a>
+                    </div>
+                    <h6><a href="detail.html">One page per Utility Bill</a></h6>
+                    <div class="price">
+                        <div>{{ this.counts.ONE_BIL }} Reports</div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">One summary rollup for my entire Organization or Business Group</div>
-                        <div class="panel-body">
-                            {{ this.counts.ONE_ORG }} Reports
-                        </div>
+            <div class="col-sm-4 col-md-3 box-product-outer">
+                <div class="box-product">
+                    <div class="img-wrapper">
+                        <a href="detail.html">
+                            <img alt="Product" src="images/demo/p1-1.jpg">
+                        </a>
+                    </div>
+                    <h6><a href="detail.html">One summary rollup for my entire Organization or Business Group</a></h6>
+                    <div class="price">
+                        <div>{{ this.counts.ONE_ORG }} Reports</div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Many rows of Buildings on a page</div>
-                        <div class="panel-body">
-                            {{ this.counts.MANY_BLD }} Reports
-                        </div>
+            <div class="col-sm-4 col-md-3 box-product-outer">
+                <div class="box-product">
+                    <div class="img-wrapper">
+                        <a href="detail.html">
+                            <img alt="Product" src="images/demo/p1-1.jpg">
+                        </a>
+                    </div>
+                    <h6><a href="detail.html">Many rows of Buildings on a page</a></h6>
+                    <div class="price">
+                        <div>{{ this.counts.MANY_BLD }} Reports</div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Many rows Meters or Accounts on a page</div>
-                        <div class="panel-body">
-                            {{ this.counts.MANY_MA }} Reports
-                        </div>
+            <div class="col-sm-4 col-md-3 box-product-outer">
+                <div class="box-product">
+                    <div class="img-wrapper">
+                        <a href="detail.html">
+                            <img alt="Product" src="images/demo/p1-1.jpg">
+                        </a>
+                    </div>
+                    <h6><a href="detail.html">Many rows Meters or Accounts on a page</a></h6>
+                    <div class="price">
+                        <div>{{ this.counts.MANY_MA }} Reports</div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Many rows of Utility Bills on a page</div>
-                        <div class="panel-body">
-                            {{ this.counts.MANY_BIL }} Reports
-                        </div>
+            <div class="col-sm-4 col-md-3 box-product-outer">
+                <div class="box-product">
+                    <div class="img-wrapper">
+                        <a href="detail.html">
+                            <img alt="Product" src="images/demo/p1-1.jpg">
+                        </a>
+                    </div>
+                    <h6><a href="detail.html">Many rows of Utility Bills on a page</a></h6>
+                    <div class="price">
+                        <div>{{ this.counts.MANY_BIL }} Reports</div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Reports most often used for QA and Validation of Data</div>
-                        <div class="panel-body">
-                            {{ this.counts.QA }} Reports
-                        </div>
+            <div class="col-sm-4 col-md-3 box-product-outer">
+                <div class="box-product">
+                    <div class="img-wrapper">
+                        <a href="detail.html">
+                            <img alt="Product" src="images/demo/p1-1.jpg">
+                        </a>
+                    </div>
+                    <h6><a href="detail.html">Reports most often used for QA and Validation of Data</a></h6>
+                    <div class="price">
+                        <div>{{ this.counts.QA }} Reports</div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
