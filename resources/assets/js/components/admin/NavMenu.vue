@@ -5,7 +5,7 @@
                 <div class="col-xs-12">
 
                     <ul class="list-inline pull-left">
-                        <li class="hidden-xs"><a href="http://www.energycap.com">EnergyCAP Inc.</a></li>
+                        <li class="hidden-xs"><a href="http://www.energycap.com">EnergyCAP Report Viewer</a></li>
                     </ul>
 
                     <ul class="list-inline pull-right">

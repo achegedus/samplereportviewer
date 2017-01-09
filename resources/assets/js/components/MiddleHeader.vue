@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 logo">
-                    <a href="index.html"><img alt="Logo" src="images/logo-teal.png" class="img-responsive" /></a>
+                    <a href="index.html"><img alt="Logo" src="images/logo.png" class="img-responsive" /></a>
                 </div>
                 <div class="col-sm-8 col-md-6 search-box m-t-2">
                     <div class="input-group">
@@ -26,7 +26,6 @@
 
 
 <script>
-
     export default{
 
     }
