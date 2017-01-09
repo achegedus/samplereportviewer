@@ -47,14 +47,15 @@
         },
 
         methods: {
-            updateReportTotals: function(reportCount, query_string) {
-                console.log("QS" + query_string);
-                this.counts = reportCount;
-                this.querystring = query_string;
+            updateReportTotals: function(updateObject) {
+                this.counts = updateObject.report_count;
+                this.querystring = updateObject.query_string;
             },
 
             patternClicked: function() {
                 console.log(this.querystring + " CLICKED ");
+
+                this.$router.push({name: 'report-list-page', params: { queryString: this.querystring}});
             }
         }
     }

@@ -37,6 +37,7 @@ import DashboardPage from './pages/admin/DashboardPage.vue'
 import AdminReportsPage from './pages/admin/ReportsPage.vue'
 import AdminReportEditPage from './pages/admin/ReportsEditPage.vue'
 import AdminReportCreatePage from './pages/admin/ReportNewPage.vue'
+import ReportListPage from './pages/ReportListPage.vue'
 
 import store from './store'
 
@@ -50,7 +51,8 @@ const routes = [
     {path: '/admin/dashboard', component: DashboardPage, name: 'admin-dashboard', meta: {requiresAuth: true }},
     {path: '/admin/reports', component: AdminReportsPage, name: 'admin-reports', meta: {requiresAuth: true }},
     {path: '/admin/reports/:reportId/edit', component: AdminReportEditPage, name: 'admin-report-edit', meta: {requiresAuth: true }},
-    {path: '/admin/reports/create', component: AdminReportCreatePage , name: 'admin-report-create', meta: {requiresAuth: true}}
+    {path: '/admin/reports/create', component: AdminReportCreatePage , name: 'admin-report-create', meta: {requiresAuth: true}},
+    {path: '/app/reports/list', component: ReportListPage, name: 'report-list-page'}
 ]
 
 

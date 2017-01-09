@@ -37,7 +37,6 @@
         methods: {
 
             itemClicked: function() {
-                console.log('item clicked');
                 this.$emit('item-clicked');
             }
 

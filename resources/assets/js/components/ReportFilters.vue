@@ -52,10 +52,14 @@
                 // go get the report data
                 this.axios.get('/api/v1/counter?' + querystring)
                 .then((response) => {
-                    console.log(self.querystring)
                     this.counts = response.data.data
 
-                    self.$emit('update-results', [self.counts, self.querystring]);
+                    var updateObject = {
+                        report_count: this.counts,
+                        query_string: this.querystring
+                    };
+
+                    self.$emit('update-results', updateObject);
                 });
             },
 
