@@ -2,11 +2,11 @@
     <div class="col-sm-4 col-md-3 box-product-outer">
         <div class="box-product">
             <div class="img-wrapper">
-                <a href="#" v-on:click.prevent="itemClicked">
-                    <img alt="Product" :src="image">
-                </a>
+                <router-link :to="{ name: 'report-list-page', query: final_query}">
+                    <img alt="Product" src="https://placehold.it/150x150">
+                </router-link>
             </div>
-            <h6><a href="#" v-on:click.prevent="itemClicked">{{ desc }}</a></h6>
+            <h6><router-link :to="{ name: 'report-list-page', query: final_query}">{{ desc }}</router-link></h6>
             <div class="price">
                 <div>{{ reportcount }} Reports</div>
             </div>
@@ -23,10 +23,20 @@
 <script>
 
     export default{
-        props: ['desc', 'image', 'reportcount', 'querystring'],
+        props: ['desc', 'image', 'reportcount', 'query_object', 'pattern'],
         data(){
             return{
-                msg:'hello vue'
+                query_params: {
+                    pattern: this.pattern
+                }
+            }
+        },
+
+        computed: {
+            final_query: function() {
+                var x = this.query_object;
+                x.pattern = this.pattern;
+                return x;
             }
         },
 
@@ -36,9 +46,9 @@
 
         methods: {
 
-            itemClicked: function() {
-                this.$emit('item-clicked');
-            }
+        },
+
+        mounted() {
 
         }
     }

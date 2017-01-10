@@ -36,7 +36,8 @@
                 filters: {
                     cost_avoidance: false
                 },
-                querystring: ""
+                querystring: "",
+                queryobject: {}
             }
         },
 
@@ -56,7 +57,8 @@
 
                     var updateObject = {
                         report_count: this.counts,
-                        query_string: this.querystring
+                        query_string: this.querystring,
+                        query_object: this.queryobject
                     };
 
                     self.$emit('update-results', updateObject);
@@ -65,21 +67,26 @@
 
             filterResults: function() {
                 this.querystring = "";
+                this.queryobject = {};
 
                 if (this.filters.cost_avoidance == true) {
                     this.querystring = this.querystring + "cost_avoidance=1&";
+                    this.queryobject.cost_avoidance = 1;
                 }
 
                 if (this.filters.actual_bill == true) {
                     this.querystring = this.querystring + "actual_bill=1&";
+                    this.queryobject.actual_bill = 1;
                 }
 
                 if (this.filters.cal_bill == true) {
                     this.querystring = this.querystring + "calendarized_bill=1&";
+                    this.queryobject.calendarized_bill = 1;
                 }
 
                 if (this.filters.norm_bill == true) {
                     this.querystring = this.querystring + "normalized_bill=1&";
+                    this.queryobject.normalized_bill = 1;
                 }
 
                 this.getReportCounts(this.querystring);
