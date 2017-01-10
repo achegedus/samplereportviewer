@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Transformers\ReportDetailTransformer;
+use App\Models\Pattern;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use EllipseSynergie\ApiResponse;
@@ -31,17 +32,54 @@ class ReportsController extends Controller
     {
         $inputs = $request->all();
 
-        $report_filters = Report::select();
+        try {
+            $statusCode = 200;
 
-        foreach ($inputs as $key => $value) {
-            $report_filters = $report_filters->where($key, $value);
+
+            if (!$request->input('pattern') || $request->input('pattern') == "") {
+                $reportlist = Report::query();
+
+                foreach ($inputs as $key => $value) {
+                    if ($key != 'pattern' && $key != 'page') {
+                        $reportlist = $reportlist->where($key, $value);
+                    }
+                }
+
+                $response['data'] = $reportlist->paginate(15);
+            } else {
+
+                if ($request->input('pattern') != "QA") {
+
+                    $pattern = Pattern::where('name', $request->input('pattern'))->first();
+
+                    $reportlist = Report::where('pattern_id', $pattern->id);
+
+                    foreach ($inputs as $key => $value) {
+                        if ($key != 'pattern' && $key != 'page') {
+                            $reportlist = $reportlist->where($key, $value);
+                        }
+                    }
+
+                    $response['data'] = $reportlist->paginate(15);
+                } else {
+                    // QA
+                    $reportlist = Report::where('quality_assurance', 1);
+
+                    foreach ($inputs as $key => $value) {
+                        if ($key != 'pattern' && $key != 'page') {
+                            $reportlist = $reportlist->where($key, $value);
+                        }
+                    }
+
+                    $response['data'] = $reportlist->paginate(15);
+                }
+            }
+
+        } catch (\Exception $e) {
+            $statusCode = 400;
+        } finally {
+            return response()->json($response, $statusCode);
         }
-
-        $reports = $report_filters->get();
-
-
-        return $this->response->withCollection($reports, new ReportTransformer());
-
     }
 
 

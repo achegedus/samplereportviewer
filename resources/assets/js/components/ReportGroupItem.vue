@@ -1,4 +1,5 @@
 <template>
+
     <div class="col-sm-4 col-md-3 box-product-outer">
         <div class="box-product">
             <div class="img-wrapper">
@@ -12,25 +13,15 @@
             </div>
         </div>
     </div>
+
 </template>
 
-
-<style>
-
-</style>
 
 
 <script>
 
     export default{
         props: ['desc', 'image', 'reportcount', 'query_object', 'pattern'],
-        data(){
-            return{
-                query_params: {
-                    pattern: this.pattern
-                }
-            }
-        },
 
         computed: {
             final_query: function() {
@@ -38,18 +29,7 @@
                 x.pattern = this.pattern;
                 return x;
             }
-        },
-
-        components:{
-
-        },
-
-        methods: {
-
-        },
-
-        mounted() {
-
         }
     }
+
 </script>

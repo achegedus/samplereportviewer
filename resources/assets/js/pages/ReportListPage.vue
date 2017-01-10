@@ -7,6 +7,20 @@
                 </button>
             </div>
         </div>
+
+        <div class="row">
+
+            <table>
+                <tr>
+                    <th>Report Name</th>
+                </tr>
+
+                <tr v-for="report in reports">
+                    <td>{{ report.code }}</td>
+                </tr>
+            </table>
+
+        </div>
     </div>
 </template>
 
@@ -20,12 +34,8 @@
     export default{
         data(){
             return{
-                msg:'hello vue'
+                reports:[]
             }
-        },
-
-        components:{
-
         },
 
         methods: {
@@ -36,19 +46,23 @@
             getReportsList: function() {
                 self = this;
 
+                var qs = this.$route.query;
+
+                var qsString = "";
+                for (var key in qs) {
+                    qsString = qsString + key + "=" + qs[key] + "&";
+                }
+
                 // go get the report data
-                this.axios.get('/api/v1/counter?' + querystring)
-                .then((response) => {
-                    this.counts = response.data.data
-
-                    var updateObject = {
-                        report_count: this.counts,
-                        query_string: this.querystring
-                    };
-
-                    self.$emit('update-results', updateObject);
+                this.axios.get('/api/v1/reports?' + qsString).then((response) => {
+                    console.log(response);
+                    this.reports = response.data.data.data
                 });
             }
+        },
+
+        mounted() {
+            this.getReportsList()
         }
     }
 </script>
