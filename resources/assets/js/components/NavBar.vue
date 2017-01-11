@@ -14,7 +14,7 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="active"><router-link :to="{ name: 'home'}">Home</router-link></li>
                     <li><a href="#">Latest Updates</a></li>
                 </ul>
             </div>
