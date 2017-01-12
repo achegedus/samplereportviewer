@@ -14,19 +14,11 @@
             <report-filters v-on:update-results="updateReportTotals"></report-filters>
 
             <div class="col-sm-9">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Report Name</th>
-                    </tr>
-                    </thead>
 
-                    <tbody>
-                    <tr v-for="report in reports">
-                        <td>{{ report.code }}</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="title"><span>{{ pattern.description }}</span></div>
+
+                <report-item v-for="report in reports" v-bind:report="report"></report-item>
+
             </div>
 
         </div>
@@ -45,6 +37,7 @@
 <script>
 
     import ReportFilters from '../components/ReportFilters.vue'
+    import ReportItem from '../components/ReportItem.vue'
 
     export default{
         data(){
@@ -55,7 +48,7 @@
         },
 
         components: {
-            ReportFilters
+            ReportFilters, ReportItem
         },
 
         methods: {
@@ -75,7 +68,6 @@
 
                 // go get the report data
                 this.axios.get('/api/v1/reports?' + qsString).then((response) => {
-                    console.log(response);
                     this.reports = response.data.data.data
                 });
             },
@@ -83,19 +75,20 @@
             getPatternDetail: function() {
                 if (this.$route.query.pattern && this.$route.query.pattern != "") {
                     this.axios.get('/api/v1/pattern/' + this.$route.query.pattern).then((response) => {
-                    this.pattern = response.data.data
-                });
+                        console.log(response);
+                        this.pattern = response.data.data
+                    });
                 }
             },
 
             updateReportTotals: function(updateObject) {
-                console.log(updateObject);
                 this.patterns = updateObject
             }
         },
 
         mounted() {
             this.getReportsList()
+            this.getPatternDetail()
         }
     }
 

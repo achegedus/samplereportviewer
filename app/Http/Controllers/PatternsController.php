@@ -47,7 +47,7 @@ class PatternsController extends Controller
                 'data' => []
             ];
 
-            $pattern = Pattern::where('name', $id);
+            $pattern = Pattern::where('name', $id)->first();
 
             $response['data'] = $pattern;
 

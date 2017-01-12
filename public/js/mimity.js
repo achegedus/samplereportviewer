@@ -12,31 +12,31 @@ function set_color() {
   var style = localStorage.getItem('mimity-style');
   $('#color-chooser').val(color);
   $('#style-chooser').val(style);
-  $('#theme').attr('href','css/style.'+color+'.'+style+'.css');
-  $('.logo img').attr('src','images/logo-'+color+'.png');
+  $('#theme').attr('href','/css/style.'+color+'.'+style+'.css');
+  $('.logo img').attr('src','/images/logo-'+color+'.png');
 }
 
 $(function(){
 
   // Change Color Style
-  $('.chooser-toggle').click(function(){
-    $('.chooser').toggleClass('chooser-hide');
-  });
-  if (localStorage.getItem('mimity-color') == null) {
-    localStorage.setItem('mimity-color', 'teal');
-  }
-  if (localStorage.getItem('mimity-style') == null) {
-    localStorage.setItem('mimity-style', 'flat');
-  }
-  set_color();
-  $('#color-chooser').change(function(){
-    localStorage.setItem('mimity-color', $(this).val());
-    set_color();
-  });
-  $('#style-chooser').change(function(){
-    localStorage.setItem('mimity-style', $(this).val());
-    set_color();
-  });
+  // $('.chooser-toggle').click(function(){
+  //   $('.chooser').toggleClass('chooser-hide');
+  // });
+  // if (localStorage.getItem('mimity-color') == null) {
+  //   localStorage.setItem('mimity-color', 'teal');
+  // }
+  // if (localStorage.getItem('mimity-style') == null) {
+  //   localStorage.setItem('mimity-style', 'flat');
+  // }
+  // set_color();
+  // $('#color-chooser').change(function(){
+  //   localStorage.setItem('mimity-color', $(this).val());
+  //   set_color();
+  // });
+  // $('#style-chooser').change(function(){
+  //   localStorage.setItem('mimity-style', $(this).val());
+  //   set_color();
+  // });
 
   // open navigation dropdown on hover (only when width >= 768px)
   $('ul.nav li.dropdown').hover(function() {

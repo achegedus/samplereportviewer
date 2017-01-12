@@ -15,7 +15,7 @@
     <link href="/css/font-awesome.css" rel="stylesheet">
     <link href="/css/bootstrap-select.css" rel="stylesheet">
     <link href="/css/nouislider.css" rel="stylesheet">
-    <link href="/css/style.teal.flat.css" rel="stylesheet" id="theme">
+    <link href="/css/style.eci.flat.css" rel="stylesheet" id="theme">
 
     <link rel="stylesheet" href="/css/app.css">
 
@@ -49,7 +49,7 @@
     <!-- Plugins -->
     <script src="/js/bootstrap-select.js"></script>
     <script src="/js/nouislider.js"></script>
-    {{--<script src="/js/mimity.js"></script>--}}
+    <script src="/js/mimity.js"></script>
     {{--<script src="/js/mimity.filter-sidebar.js"></script>--}}
 
 </body>

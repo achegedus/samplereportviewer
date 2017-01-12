@@ -90,9 +90,18 @@ class ReportsController extends Controller
      */
     public function show($id)
     {
-        $report = Report::findOrFail($id);
+        try {
+            $statusCode = 200;
 
-        return $this->response->withItem($report, new ReportDetailTransformer());
+            $report = Report::where('code', $id)->with('pattern')->with('group')->with('topic')->first();
+
+            $response['data'] = $report;
+
+        } catch (\Exception $e) {
+            $statusCode = 400;
+        } finally {
+            return response()->json($response, $statusCode);
+        }
     }
 
 
