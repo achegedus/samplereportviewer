@@ -1,14 +1,6 @@
 <template>
 
     <div>
-        <div class="row" id="titleRow">
-            <div class="col-xs-12">
-                <button type="button" class="btn btn-theme" v-on:click="goBack()">
-                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back
-                </button>
-            </div>
-        </div>
-
         <div class="row">
 
             <report-filters v-on:update-results="updateReportTotals"></report-filters>

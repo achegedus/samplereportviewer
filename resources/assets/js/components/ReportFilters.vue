@@ -1,7 +1,19 @@
 <template>
     <div class="col-sm-3">
         <div class="filter-sidebar">
-            <div class="title"><span>Bill Types</span></div>
+            <div class="title"><span>Primary Uses</span></div>
+            <div class="checkbox">
+                <label><input type="checkbox" v-model="filters.accounting" v-on:change="filterResults"><span> Accounting, Procurement, Bill Processing, or Data QA.</span></label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" v-model="filters.facility_management" v-on:change="filterResults"><span> Facility, Energy and Sustainability Management.</span></label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" v-model="filters.cost_avoidance" v-on:change="filterResults"><span> Cost Avoidance</span></label>
+            </div>
+
+
+            <div class="title filterhead"><span>Bill Types</span></div>
             <div class="checkbox">
                 <label><input type="checkbox" v-model="filters.actual_bill" v-on:change="filterResults"><span> Actual Bill Data</span></label>
             </div>
@@ -13,14 +25,61 @@
             <div class="checkbox">
                 <label><input type="checkbox" v-model="filters.norm_bill" v-on:change="filterResults"><span> Normalized Bill Data</span></label>
             </div>
+
+
+            <div class="title filterhead"><span>Report Details</span></div>
+            <div class="checkbox">
+                <label><input type="checkbox" v-model="filters.line_detail" v-on:change="filterResults"><span> Show individual bill line item details.</span></label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" v-model="filters.compare_years" v-on:change="filterResults"><span> Show year-to-year comparisons.</span></label>
+            </div>
+
+
+            <div class="title filterhead"><span>Special Topics</span></div>
+            <div class="checkbox">
+                <label><input type="checkbox" v-model="filters.norm_bill" v-on:change="filterResults"><span> Database Setup and Configuration</span></label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" v-model="filters.norm_bill" v-on:change="filterResults"><span> Budget</span></label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" v-model="filters.norm_bill" v-on:change="filterResults"><span> Weather</span></label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" v-model="filters.norm_bill" v-on:change="filterResults"><span> Chargebacks, Rebilling, %Distribution</span></label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" v-model="filters.norm_bill" v-on:change="filterResults"><span> Counters, Production</span></label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" v-model="filters.norm_bill" v-on:change="filterResults"><span> Vendor Contract Tracking</span></label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" v-model="filters.norm_bill" v-on:change="filterResults"><span> Smart Meter Interval Data</span></label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" v-model="filters.norm_bill" v-on:change="filterResults"><span> Greenhouse Gas</span></label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" v-model="filters.norm_bill" v-on:change="filterResults"><span> Issue Tracker</span></label>
+            </div>
         </div>
 
         <div class="filter-sidebar">
-            <div class="title"><span>Other</span></div>
-            <div class="checkbox"><label><input type="checkbox" v-model="filters.cost_avoidance" v-on:change="filterResults"><span> Cost Avoidance</span></label></div>
+            <div class="title filterhead"><span>Other</span></div>
         </div>
     </div>
 </template>
+
+
+<style>
+
+    .filter-sidebar > .filterhead {
+        margin-top: 20px;
+    }
+
+</style>
 
 
 <script>

@@ -14,7 +14,8 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><router-link :to="{ name: 'home'}">Home</router-link></li>
+                    <li v-show="$route.path!=='/'" class="active"><a href="#" v-on:click="goBack()"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back</a></li>
+                    <router-link :to="{ name: 'home'}" tag="li" active-class="active" exact><a>Home</a></router-link>
                     <li><a href="#">Latest Updates</a></li>
                 </ul>
             </div>
@@ -30,8 +31,10 @@
 
 <script>
     export default{
-        components:{
-
+        methods: {
+            goBack: function() {
+                this.$router.go(-1);
+            }
         }
     }
 </script>
