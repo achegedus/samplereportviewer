@@ -1,14 +1,17 @@
 <template>
-    <div>
+    <div id="reportTable">
         <div class="row">
             <div class="col-xs-6">
-                <button class="btn btn-default" v-on:click="createNewReport()">New report</button>
+                <button class="btn btn-default" v-on:click="createNewReport()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New report</button>
             </div>
             <div class="col-xs-6 pull-right">
+
                 <div class="input-group">
-                    <input type="text" class="form-control" v-model="searchString" placeholder="Search" v-on:keyup="updateSearch">
+                    <input type="text" class="form-control" aria-label="Search here..." v-model="searchString" v-on:keyup="updateSearch" placeholder="Search here...">
                     <div class="input-group-btn">
-                        <button class="btn btn-default" v-on:click="clearSearchString()" :disabled="searchString.length == 0"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default btn-search" v-on:click="clearSearchString()" :disabled="searchString.length == 0">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -41,6 +44,14 @@
 
 
 <style>
+
+    .table {
+        margin-top: 20px
+    }
+
+    #reportTable {
+        margin-bottom: 100px;
+    }
 
 </style>
 

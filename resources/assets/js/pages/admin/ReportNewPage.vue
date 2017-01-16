@@ -3,12 +3,6 @@
 
         <div class="row">
             <div class="col-xs-6"><h2>New Report</h2></div>
-
-            <div class="col-xs-6 text-right">
-                <button type="button" class="btn btn-primary back-button" v-on:click="goBack()">
-                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back
-                </button>
-            </div>
         </div>
 
 
@@ -68,10 +62,6 @@
 
                 this.handleFormSubmit();
                 console.log("submitted");
-            },
-
-            goBack: function() {
-                this.$router.go(-1);
             },
 
             handleFormSubmit: function() {

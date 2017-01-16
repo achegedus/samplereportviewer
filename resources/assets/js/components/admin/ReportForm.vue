@@ -57,21 +57,21 @@
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="actual_check" v-on:change="setActual">
-                                Actual Data
+                                <span> Actual Data</span>
                             </label>
                         </div>
 
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="cal_check">
-                                Calendarized Data
+                                <span> Calendarized Data</span>
                             </label>
                         </div>
 
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="norm_check">
-                                Normalized Data
+                                <span> Normalized Data</span>
                             </label>
                         </div>
                     </div>
@@ -85,21 +85,21 @@
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="report.quality_assurance">
-                                QA and Validation of Data
+                                <span> QA and Validation of Data</span>
                             </label>
                         </div>
 
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="report.accounting">
-                                Accounting, Procurement, Bill processing
+                                <span> Accounting, Procurement, Bill processing</span>
                             </label>
                         </div>
 
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="report.facility_management">
-                                Facility, Energy and Sustainability management
+                                <span> Facility, Energy and Sustainability management</span>
                             </label>
                         </div>
                     </div>
@@ -115,21 +115,21 @@
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="report.line_detail">
-                                Shows individual bill line item details
+                                <span> Shows individual bill line item details</span>
                             </label>
                         </div>
 
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="report.compare_years">
-                                Shows year to year cost and/or usage comparison.
+                                <span> Shows year to year cost and/or usage comparison.</span>
                             </label>
                         </div>
 
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="report.cost_avoidance">
-                                Year to year comparisons based on Cost Avoidance. Requires licensing and use of the Cost Avoidance Module.
+                                <span> Year to year comparisons based on Cost Avoidance. Requires licensing and use of the Cost Avoidance Module.</span>
                             </label>
                         </div>
                     </div>
@@ -142,6 +142,10 @@
 
 
 <style>
+
+    input[type=checkbox]:checked + span::before, input[type=radio]:checked + span::before {
+        color: #0084A9;
+    }
 
 </style>
 
@@ -174,7 +178,6 @@
         },
 
         methods: {
-
             setActual: function() {
                 console.log('ACT' + this.report.actual_data);
                 if (this.report.actual_data == true) {
@@ -183,7 +186,6 @@
                     this.report.norm_data = false;
                 }
             }
-
 
         },
 

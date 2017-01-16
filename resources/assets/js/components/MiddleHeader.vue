@@ -3,9 +3,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 logo">
-                    <a href="index.html"><img alt="Logo" src="/images/logo.png" class="img-responsive" /></a>
+                    <router-link :to="{ name: 'home'}"><img alt="Logo" src="/images/logo.png" class="img-responsive" /></router-link>
                 </div>
-                <div class="col-sm-8 col-md-6 search-box m-t-2">
+                <div class="col-sm-8 col-md-6 search-box m-t-2" v-show="!$route.path.includes('admin/')">
                     <div class="input-group">
                         <input type="text" class="form-control" aria-label="Search here..." placeholder="Search here...">
                         <div class="input-group-btn">

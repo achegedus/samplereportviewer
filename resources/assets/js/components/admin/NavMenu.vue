@@ -1,22 +1,24 @@
 <template>
+
     <div class="top-header">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-
                     <ul class="list-inline pull-left">
-                        <li class="hidden-xs"><a href="http://www.energycap.com">EnergyCAP Report Viewer</a></li>
+                        <li class="hidden-xs">
+                            <router-link :to="{ name: 'home'}" class="btn">EnergyCAP Report Viewer</router-link>
+                        </li>
                     </ul>
 
-                    <ul class="list-inline pull-right">
-                        <li class="hidden-xs"><a href="">{{ username }}</a></li>
+                    <ul class="list-inline pull-right" v-show="$route.meta.requiresAuth">
+                        <li class="hidden-xs">
+                            <button type="button" class="btn dropdown-toggle">{{ username }}</button>
+                        </li>
 
                         <li>
                             <button type="button" class="btn dropdown-toggle" v-on:click.prevent="handleLogout()">Logout</button>
                         </li>
-
                     </ul>
-
                 </div>
             </div>
         </div>
@@ -27,7 +29,11 @@
 
 <style>
 
-
+    .btn:hover {
+        color: #fff;
+        background-color: #acacac;
+        border-color: #b3be2b;
+    }
 
 </style>
 
@@ -49,7 +55,10 @@
             }),
 
             username() {
-                return this.userStore.authUser.name
+                if (this.userStore.authUser)
+                    return this.userStore.authUser.name
+                else
+                    return false
             }
         },
 
