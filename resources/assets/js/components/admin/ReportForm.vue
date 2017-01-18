@@ -108,7 +108,84 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3 class="panel-title">Special Topics</h3></div>
+                    <div class="panel-body">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" v-model="report.topic_id">
+                                <span> No special topic</span>
+                            </label>
+                        </div>
+
+                        <div class="radio">
+                            <label>
+                                <input type="radio" v-model="report.topic_id">
+                                <span> Database setup and configuration report</span>
+                            </label>
+                        </div>
+
+                        <div class="radio">
+                            <label>
+                                <input type="radio" v-model="report.topic_id">
+                                <span> Budget report</span>
+                            </label>
+                        </div>
+
+                        <div class="radio">
+                            <label>
+                                <input type="radio" v-model="report.topic_id">
+                                <span> Weather data report</span>
+                            </label>
+                        </div>
+
+                        <div class="radio">
+                            <label>
+                                <input type="radio" v-model="report.topic_id">
+                                <span> Chargebacks, rebilling and % distribution report</span>
+                            </label>
+                        </div>
+
+                        <div class="radio">
+                            <label>
+                                <input type="radio" v-model="report.topic_id">
+                                <span> Counters and production report</span>
+                            </label>
+                        </div>
+
+                        <div class="radio">
+                            <label>
+                                <input type="radio" v-model="report.topic_id">
+                                <span> Vendor contract tracking report</span>
+                            </label>
+                        </div>
+
+                        <div class="radio">
+                            <label>
+                                <input type="radio" v-model="report.topic_id">
+                                <span> Smart meter interval data report</span>
+                            </label>
+                        </div>
+
+                        <div class="radio">
+                            <label>
+                                <input type="radio" v-model="report.topic_id">
+                                <span> Greenhouse gas report</span>
+                            </label>
+                        </div>
+
+                        <div class="radio">
+                            <label>
+                                <input type="radio" v-model="report.topic_id">
+                                <span> Issue tracker report</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading"><h3 class="panel-title">Data Shown</h3></div>
                     <div class="panel-body">
@@ -129,30 +206,28 @@
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="report.cost_avoidance">
-                                <span> Year to year comparisons based on Cost Avoidance. Requires licensing and use of the Cost Avoidance Module.</span>
+                                <span> Year to year comparisons based on Cost Avoidance. <br />
+                                    <small>(Requires licensing and use of the Cost Avoidance Module.)</small>
+                                </span>
                             </label>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
 
 <style>
-
     input[type=checkbox]:checked + span::before, input[type=radio]:checked + span::before {
         color: #0084A9;
     }
-
 </style>
 
 
 <script>
     export default {
-
         props: ['report'],
 
         data() {
@@ -201,7 +276,6 @@
             this.axios.get('/api/v1/admin/patterns').then((response) => {
                 this.patterns = response.data.data
             });
-
         }
     }
 </script>

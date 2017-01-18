@@ -5,12 +5,11 @@
             <div class="col-xs-6"><h2>{{ report.code }}</h2></div>
         </div>
 
-
         <form @submit.prevent="validateBeforeSubmit">
             <report-form :report="this.report" ></report-form>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-default">Update Report</button>
+                <button type="submit" class="btn btn-error">Update Report</button>
             </div>
         </form>
     </div>
@@ -28,7 +27,6 @@
     import { mapState } from 'vuex'
     import ReportForm from '../../components/admin/ReportForm.vue'
 
-
     export default{
 
         data(){
@@ -40,11 +38,9 @@
             }
         },
 
-
         mounted () {
             this.fetchReport()
         },
-
 
         computed: {
             ...mapState({
@@ -52,9 +48,7 @@
             }),
         },
 
-
         methods: {
-
             fetchReport: function() {
                 // go get the report data
                 this.axios.get('/api/v1/admin/report/' + this.$route.params.reportId)
@@ -101,9 +95,7 @@
                         console.log("An error occurred");
                     });
             }
-
         },
-
 
         components: {
             ReportForm

@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     //
-    protected $fillable = ['code', 'description', 'display_name', 'group_id'];
+    protected $fillable = ['code', 'description', 'display_name', 'version', 'rating', 'quality_assurance',
+        'accounting', 'facility_management', 'cost_avoidance', 'compare_years', 'actual_bill', 'calendarized_bill',
+        'normalized_bill', 'line_detail', 'pattern_id', 'topic_id', 'group_id'];
 
     // Relationships
     public function group() {
