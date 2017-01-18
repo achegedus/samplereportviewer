@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <div class="row">
             <div class="col-xs-6"><h2>{{ report.code }}</h2></div>
         </div>
@@ -88,12 +87,15 @@
                     display_name: this.report.name
                 }
 
-                this.$http.put('/api/v1/admin/report/' + this.$route.params.reportId, postData)
-                    .then((response) => {
-                        console.log(response)
-                    }, (error) => {
-                        console.log("An error occurred");
-                    });
+                this.axios.get('/api/v1/admin/report/' + this.$route.params.reportId, postData)
+                .then((response) => {
+                    console.log(response);
+                    this.report = response.data.data
+                })
+                .catch((error) => {
+                    console.log('An error occurred');
+                    console.log(error);
+                });
             }
         },
 

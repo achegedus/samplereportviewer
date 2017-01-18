@@ -30,25 +30,21 @@
 
 
     export default{
-
         data(){
             return{
                 report: {}
             }
         },
 
-
         created () {
 
         },
-
 
         computed: {
             ...mapState({
                 userStore: state => state.userStore
             }),
         },
-
 
         methods: {
 
@@ -72,16 +68,16 @@
                     display_name: this.report.name
                 }
 
-                this.$http.post('/api/v1/admin/report/' + this.$route.params.reportId, postData)
-                    .then((response) => {
-                        console.log(response)
-                    }, (error) => {
-                        console.log("An error occurred");
-                    });
+                this.axios.get('/api/v1/admin/report/' + this.$route.params.reportId, postData)
+                .then((response) => {
+                    console.log(response);
+                    this.report = response.data.data
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
             }
-
         },
-
 
         components: {
             ReportForm

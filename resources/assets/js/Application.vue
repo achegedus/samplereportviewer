@@ -1,5 +1,4 @@
 <template>
-
     <div>
         <admin-nav></admin-nav>
 
@@ -12,9 +11,7 @@
         </div>
 
         <footer-bar></footer-bar>
-
     </div>
-
 </template>
 
 

@@ -38,7 +38,7 @@
             </tbody>
         </table>
 
-        <v-paginator :options="options" :resource_url="resource_url" ref="vpaginator" @update="updateResource"></v-paginator>
+        <v-paginator :options="allHeaders" :resource_url="resource_url" ref="vpaginator" @update="updateResource"></v-paginator>
     </div>
 </template>
 
@@ -58,7 +58,8 @@
 
 <script>
     import { mapState } from 'vuex'
-    var VuePaginator = require('vuejs-paginator');
+    import {getHeader} from '../../config'
+    var VuePaginator = require('vuejs-paginator-axios');
 
     export default{
 
@@ -74,8 +75,7 @@
                     remote_next_page_url: 'meta.pagination.links.next',
                     remote_prev_page_url: 'meta.pagination.links.previous',
                     next_button_text: 'Go Next',
-                    previous_button_text: 'Go Back',
-
+                    previous_button_text: 'Go Back'
                 }
             }
         },
@@ -84,6 +84,12 @@
             ...mapState({
                 userStore: state => state.userStore
             }),
+
+            allHeaders: function() {
+                var output = this.options;
+                output.headers = getHeader();
+                return output;
+            }
         },
 
         components: {
@@ -112,10 +118,6 @@
             createNewReport: function() {
                 this.$router.push({name: 'admin-report-create'})
             }
-
-        },
-
-        created() {
 
         }
     }

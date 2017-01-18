@@ -207,6 +207,7 @@
                 report:[]
             }
         },
+
         components:{
 
         },

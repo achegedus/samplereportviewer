@@ -16,7 +16,6 @@ require('auth0-js');
  */
 
 window.Vue = require('vue');
-require('vue-resource');
 require('vue-router');
 require('vue-moment');
 
@@ -27,41 +26,6 @@ require('vue-moment');
  */
 
 import auth from './auth';
-
-
-
-Vue.http.interceptors.push((request, next) => {
-    request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
-
-    const tokenData = JSON.parse(window.localStorage.getItem('authUser'))
-    request.headers.set('Authorization', 'Bearer ' + tokenData.id_token);
-
-    next(function (response) {
-        // //Check for expired token response, if expired, refresh token and resubmit original request
-        // if (response.headers('Authorization')) {
-        //     var token = response.headers('Authorization');
-        //     localStorage.setItem('id_token', token);
-        // }
-        // auth.checkExpiredToken(response, request).then(function (response) {
-        //     return response;
-        // })
-    }.bind(this));
-});
-
-
-// Global handler for unauthorized api response
-Vue.http.interceptors.push((request, next)  => {
-    next((response) => {
-        if (response.status == 401) {
-            console.log("UNAUTHORIZED");
-
-            // // delete local storage and show login screen
-            // this.$store.dispatch('clearAuthUser')
-            // window.localStorage.removeItem('authUser')
-            // this.$router.push({name: 'login'})
-        }
-    });
-});
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
