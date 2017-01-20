@@ -29,6 +29,11 @@ Route::group(['prefix' => 'v1/admin', 'middleware' => 'auth0.jwt'], function () 
     Route::get('patterns', 'Admin\PatternsController@index');
     Route::get('groups', 'Admin\GroupsController@index');
     Route::get('topics', 'Admin\TopicsController@index');
+
+    Route::get('report/{id}/images', 'Admin\ImagesController@index');
+    Route::get('report/{id}/images/{filename}', 'Admin\ImagesController@show');
+    Route::post('report/{id}/image', 'Admin\ImagesController@store');
+    Route::delete('report/{report_id}/image/{image_id}', 'Admin\ImagesController@destroy');
 });
 
 // Public routes

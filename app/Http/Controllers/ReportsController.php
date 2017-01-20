@@ -35,7 +35,6 @@ class ReportsController extends Controller
         try {
             $statusCode = 200;
 
-
             if (!$request->input('pattern') || $request->input('pattern') == "") {
                 $reportlist = Report::query();
 

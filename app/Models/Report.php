@@ -23,4 +23,8 @@ class Report extends Model
     public function topic() {
         return $this->belongsTo('App\Models\Topic');
     }
+
+    public function images() {
+        return $this->hasMany('App\Models\Image');
+    }
 }

@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Transformers\ReportDetailTransformer;
 use App\Models\Report;
 use Illuminate\Http\Request;
-use EllipseSynergie\ApiResponse;
 use EllipseSynergie\ApiResponse\Contracts\Response;
 use App\Http\Transformers\ReportTransformer;
-use League\Fractal\Manager;
 
 
 class ReportsController extends Controller

@@ -25,6 +25,7 @@
                     <th>Name</th>
                     <th>Rev</th>
                     <th>Last Update</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
 
@@ -34,6 +35,7 @@
                     <td>{{ report.name }}</td>
                     <td>{{ report.version }}</td>
                     <td>{{ report.updated_at | moment("MM/D/YYYY, h:mm:ss a") }}</td>
+                    <td><router-link :to="{ name: 'admin-report-images', params: {reportId: report.id }}">Images</router-link></td>
                 </tr>
             </tbody>
         </table>
