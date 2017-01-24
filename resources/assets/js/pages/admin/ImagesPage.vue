@@ -3,6 +3,9 @@
         <div class="row">
             <div class="col-xs-6"><h2>{{ report.code }} Images</h2></div>
         </div>
+        <div class="row">
+            <img v-for="image in images" :src="image.thumbnail_url"></img>
+        </div>
     </div>
 </template>
 
@@ -17,7 +20,8 @@
         data(){
             return{
                 msg:'hello vue',
-                report: {}
+                report: {},
+                images: []
             }
         },
 
@@ -48,6 +52,11 @@
                     this.report.compare_years = this.report.filters.compare_years
                     this.report.line_detail = this.report.filters.line_detail
                 });
+
+                this.axios.get('/api/v1/admin/report/' + this.$route.params.reportId + '/images')
+                .then((response) => {
+                    this.images = response.data.data
+                })
             }
         }
     }

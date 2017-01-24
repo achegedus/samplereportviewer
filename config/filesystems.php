@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => 'local',
+    'default' => 'cloud',
 
     /*
     |--------------------------------------------------------------------------
@@ -56,10 +56,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => 'AKIAIS7JHD625UUQ3HUQ',
-            'secret' => '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',
+            'key' => 'AKIAJJYCUV2QHCBKLBTQ',
+            'secret' => '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',
             'region' => 'us-east-1',
-            'bucket' => 'srv-temp',
+            'bucket' => 'eci-srv',
         ],
 
     ],
