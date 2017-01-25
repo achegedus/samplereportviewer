@@ -16,7 +16,7 @@
     <link href="/css/bootstrap-select.css" rel="stylesheet">
     <link href="/css/nouislider.css" rel="stylesheet">
     <link href="/css/style.eci.flat.css" rel="stylesheet" id="theme">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/css/app.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

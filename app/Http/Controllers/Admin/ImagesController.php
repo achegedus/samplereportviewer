@@ -37,7 +37,7 @@ class ImagesController extends Controller
             $report = Report::findOrFail($id);
 
             // upload the file to s3
-            $file = $request->file('filefield');
+            $file = $request->file('file');
 
             if ($file != null) {
                 $filename = time() . '.' . $file->getClientOriginalExtension();
