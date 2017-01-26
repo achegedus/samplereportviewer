@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 class ReportImage extends Model
 {
     // Relationships
-    public function report() {
+    public function report()
+    {
         return $this->belongsTo('App\Models\Report');
     }
 }

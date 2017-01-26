@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use EllipseSynergie\ApiResponse\Contracts\Response;
 use App\Http\Transformers\ReportTransformer;
 
-
 class ReportsController extends Controller
 {
     protected $response;
@@ -31,8 +30,8 @@ class ReportsController extends Controller
         $search = $request->input('search');
 
         if ($search && $search != "") {
-            $reports = Report::where('code','like', '%'.$search.'%')->
-            orWhere('display_name','like', '%'.$search.'%')->
+            $reports = Report::where('code', 'like', '%'.$search.'%')->
+            orWhere('display_name', 'like', '%'.$search.'%')->
             paginate(15);
         } else {
             $reports = Report::paginate(15);

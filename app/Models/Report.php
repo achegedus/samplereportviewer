@@ -12,19 +12,23 @@ class Report extends Model
         'normalized_bill', 'line_detail', 'pattern_id', 'topic_id', 'group_id'];
 
     // Relationships
-    public function group() {
+    public function group()
+    {
         return $this->belongsTo('App\Models\Group');
     }
 
-    public function pattern() {
+    public function pattern()
+    {
         return $this->belongsTo('App\Models\Pattern');
     }
 
-    public function topic() {
+    public function topic()
+    {
         return $this->belongsTo('App\Models\Topic');
     }
 
-    public function images() {
+    public function images()
+    {
         return $this->hasMany('App\Models\ReportImage');
     }
 }

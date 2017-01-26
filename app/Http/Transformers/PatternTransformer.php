@@ -8,19 +8,17 @@
 
 namespace App\Http\Transformers;
 
-
 use League\Fractal\TransformerAbstract;
 
 class PatternTransformer extends TransformerAbstract
 {
 
-    public function transform($group) {
+    public function transform($group)
+    {
         return [
             'id' => $group->id,
             'name' => $group->name,
             'description' => $group->description
         ];
     }
-
-
 }

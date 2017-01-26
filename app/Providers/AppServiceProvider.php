@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
         //
         $this->app->bind(
             '\Auth0\Login\Contract\Auth0UserRepository',
-            '\Auth0\Login\Repository\Auth0UserRepository');
+            '\Auth0\Login\Repository\Auth0UserRepository'
+        );
     }
 }

@@ -8,20 +8,18 @@
 
 namespace App\Http\Transformers;
 
-
 use App\Models\Pattern;
 use League\Fractal\TransformerAbstract;
 
 class CounterTransformer extends TransformerAbstract
 {
 
-    public function transform(Pattern $pattern) {
+    public function transform(Pattern $pattern)
+    {
         return [
             'pattern_id' => $pattern->id,
             'name' => $pattern->name,
             'report_count' => $pattern->reports->count()
         ];
     }
-
-
 }

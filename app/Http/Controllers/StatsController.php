@@ -23,7 +23,6 @@ class StatsController extends Controller
             $patterns = Pattern::all();
 
             foreach ($patterns as $pattern) {
-
                 $report_count = $pattern->reports;
                 $querystring = "";
                 foreach ($inputs as $key => $value) {

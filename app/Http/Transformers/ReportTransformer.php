@@ -8,14 +8,14 @@
 
 namespace App\Http\Transformers;
 
-
 use App\Models\Report;
 use League\Fractal\TransformerAbstract;
 
 class ReportTransformer extends TransformerAbstract
 {
 
-    public function transform(Report $report) {
+    public function transform(Report $report)
+    {
         return [
             'id' => $report->id,
             'code' => $report->code,
@@ -29,5 +29,4 @@ class ReportTransformer extends TransformerAbstract
             ]
         ];
     }
-
 }

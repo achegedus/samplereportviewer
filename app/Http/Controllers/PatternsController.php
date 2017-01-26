@@ -29,7 +29,6 @@ class PatternsController extends Controller
             $patterns = Pattern::all();
 
             $response['data'] = $patterns;
-
         } catch (\Exception $e) {
             $statusCode = 400;
         } finally {
@@ -50,13 +49,10 @@ class PatternsController extends Controller
             $pattern = Pattern::where('name', $id)->first();
 
             $response['data'] = $pattern;
-
         } catch (\Exception $e) {
             $statusCode = 400;
         } finally {
             return response()->json($response, $statusCode);
         }
-
     }
-
 }
