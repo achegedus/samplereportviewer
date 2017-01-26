@@ -9,6 +9,6 @@ class Pattern extends Model
     // Relationships
     public function reports()
     {
-        return $this->hasMany('App\Models\Report');
+        return $this->hasMany(\App\Models\Report::class);
     }
 }

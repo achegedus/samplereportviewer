@@ -14,21 +14,21 @@ class Report extends Model
     // Relationships
     public function group()
     {
-        return $this->belongsTo('App\Models\Group');
+        return $this->belongsTo(\App\Models\Group::class);
     }
 
     public function pattern()
     {
-        return $this->belongsTo('App\Models\Pattern');
+        return $this->belongsTo(\App\Models\Pattern::class);
     }
 
     public function topic()
     {
-        return $this->belongsTo('App\Models\Topic');
+        return $this->belongsTo(\App\Models\Topic::class);
     }
 
     public function images()
     {
-        return $this->hasMany('App\Models\ReportImage');
+        return $this->hasMany(\App\Models\ReportImage::class);
     }
 }

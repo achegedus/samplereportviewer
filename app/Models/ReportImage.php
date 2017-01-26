@@ -8,6 +8,6 @@ class ReportImage extends Model
     // Relationships
     public function report()
     {
-        return $this->belongsTo('App\Models\Report');
+        return $this->belongsTo(\App\Models\Report::class);
     }
 }
